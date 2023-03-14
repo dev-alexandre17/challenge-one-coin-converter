@@ -1,4 +1,6 @@
-package challenge.java;
+package com.coin.converter.main;
+
+import com.coin.converter.components.MainMenuPanel;
 
 public class Main {
 
