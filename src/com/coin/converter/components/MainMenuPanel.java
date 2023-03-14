@@ -1,3 +1,5 @@
+package com.coin.converter.main;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
