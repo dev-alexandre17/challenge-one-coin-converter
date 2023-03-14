@@ -1,4 +1,6 @@
-package com.coin.converter.main;
+package com.coin.converter.components;
+
+import com.coin.converter.components.DataEntryPanel;
 
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
