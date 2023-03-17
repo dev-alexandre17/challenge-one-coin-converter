@@ -5,12 +5,17 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
+import javax.swing.JFormattedTextField;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 public class DataEntryPanel extends JFrame {
 
@@ -37,7 +42,12 @@ public class DataEntryPanel extends JFrame {
         Icon scaledIcon = new ImageIcon(scaledImage);
         JLabel label = new JLabel(scaledIcon);
 
-        JTextField textField = new JTextField(10);
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
+        symbols.setDecimalSeparator(',');
+        DecimalFormat format = new DecimalFormat("#,##0.00", symbols);
+        JFormattedTextField textField = new JFormattedTextField(format);
+        textField.setValue(0.0);
+        textField.setColumns(10);
 
         setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -66,6 +76,16 @@ public class DataEntryPanel extends JFrame {
         c.gridy = 5;
         c.insets = new Insets(0, -80, -90, -200);
         add(cancel, c);
+
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String valueFieldText = textField.getText();
+                valueFieldText = valueFieldText.replace(",",".");
+                double valueDecimal = Double.parseDouble(valueFieldText);
+                System.out.println("Valor digitado: " + valueDecimal);
+            }
+        });
 
         panelSettings();
 
