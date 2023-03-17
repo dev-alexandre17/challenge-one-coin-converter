@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CoinsOptionsPanel extends JFrame {
 
@@ -27,7 +29,7 @@ public class CoinsOptionsPanel extends JFrame {
                 "Converter de Reais a Libras Esterlinas", "Converter de Reais a Peso Argentino",
         "Converter de Reais a Peso Chileno", "Converter de Dólar a Reais", "Converter de Euro a Reais",
         "Converter de Libras Esterlinas a Reais", "Converter de Peso Argentino a Reais",
-        "Converter de Peso Argentino a Reais", "Converter de Peso Chileno a Reais"};
+                "Converter de Peso Chileno a Reais"};
         comboBox = new JComboBox<>(options);
 
         ok = new JButton("OK");
@@ -64,6 +66,9 @@ public class CoinsOptionsPanel extends JFrame {
         panelSettings();
 
         changeFrame();
+
+        selectOptiontComboBox();
+
     }
 
     public void panelSettings() {
@@ -85,6 +90,17 @@ public class CoinsOptionsPanel extends JFrame {
             frame.dispose();
         });
     }
+
+    public void selectOptiontComboBox() {
+        comboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object select = comboBox.getSelectedItem();
+                System.out.println("Opção Selecionada: " + select);
+            }
+        });
+    }
+
 
 
 }
