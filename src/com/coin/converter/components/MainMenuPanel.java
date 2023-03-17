@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainMenuPanel extends JFrame {
 
@@ -59,17 +61,23 @@ public class MainMenuPanel extends JFrame {
         c.insets = new Insets(10, 0, 0, 0);
         add(cancel, c);
 
+        panelSettings();
+
+        changeFrame();
+
+        selectOptiontComboBox();
+
+    }
+
+    public void panelSettings() {
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
-
-        ChangeFrame();
-
     }
 
-    public void ChangeFrame() {
+    public void changeFrame() {
         final JFrame frame = this;
         ok.addActionListener(e -> {
             if (previousFrame != null) {
@@ -80,6 +88,17 @@ public class MainMenuPanel extends JFrame {
             frame.dispose();
         });
     }
+
+    public void selectOptiontComboBox() {
+        comboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object select = comboBox.getSelectedItem();
+                System.out.println("Opção Selecionada: " + select);
+            }
+        });
+    }
+
 
 }
 
