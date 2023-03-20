@@ -19,16 +19,22 @@ public class CoinsOptionsPanel extends JFrame {
     private JButton cancel;
     private JFrame frame;
     private ConversionResultPanel previousFrame;
+    private double valueInput;
+    private double convertedValue;
+    private String convertedCurrencyType;
+    private String convertedCurrency;
 
-    public CoinsOptionsPanel() {
+    public CoinsOptionsPanel(double valueDecimal) {
         super("Moedas");
+
+        this.valueInput = valueDecimal;
 
         text = new JLabel("Escolha a moeda para a qual você deseja girar seu dinheiro");
 
         String[] options = {"Converter de Reais a Dólar", "Converter de Reais a Euro",
                 "Converter de Reais a Libras Esterlinas", "Converter de Reais a Peso Argentino",
-        "Converter de Reais a Peso Chileno", "Converter de Dólar a Reais", "Converter de Euro a Reais",
-        "Converter de Libras Esterlinas a Reais", "Converter de Peso Argentino a Reais",
+                "Converter de Reais a Peso Chileno", "Converter de Dólar a Reais", "Converter de Euro a Reais",
+                "Converter de Libras Esterlinas a Reais", "Converter de Peso Argentino a Reais",
                 "Converter de Peso Chileno a Reais"};
         comboBox = new JComboBox<>(options);
 
@@ -44,13 +50,13 @@ public class CoinsOptionsPanel extends JFrame {
         c.gridx = 0;
         c.gridy = 1;
         c.anchor = GridBagConstraints.FIRST_LINE_START;
-        c.insets = new Insets(3, 0,0, 0);
+        c.insets = new Insets(3, 0, 0, 0);
         add(text, c);
 
         c.gridx = 0;
         c.gridy = 2;
         c.anchor = GridBagConstraints.FIRST_LINE_START;
-        c.insets = new Insets(7, 0, 0,0);
+        c.insets = new Insets(7, 0, 0, 0);
         add(comboBox, c);
 
         c.gridx = 0;
@@ -67,9 +73,11 @@ public class CoinsOptionsPanel extends JFrame {
 
         changeFrame();
 
-        selectOptiontComboBox();
+        comboBoxCalculator();
 
     }
+
+    public CoinsOptionsPanel() {}
 
     public void panelSettings() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,22 +93,81 @@ public class CoinsOptionsPanel extends JFrame {
             if (previousFrame != null) {
                 previousFrame.dispose();
             }
-            ConversionResultPanel conResultP = new ConversionResultPanel();
+            ConversionResultPanel conResultP = new ConversionResultPanel(convertedValue,
+                    convertedCurrencyType, convertedCurrency);
             previousFrame = (ConversionResultPanel) conResultP;
             frame.dispose();
         });
     }
 
-    public void selectOptiontComboBox() {
+    public void comboBoxCalculator() {
         comboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object select = comboBox.getSelectedItem();
-                System.out.println("Opção Selecionada: " + select);
+                String selectOption = (String) comboBox.getSelectedItem();
+                double result = 0.0;
+                String currencyType = "";
+                String currency = "";
+
+                switch (selectOption) {
+                    case "Converter de Reais a Dólar":
+                        result = valueInput / 5.28;
+                        currencyType = "$";
+                        currency = "Dólares";
+                        break;
+                    case "Converter de Reais a Euro":
+                        result = valueInput / 5.56;
+                        currencyType = "Є";
+                        currency = "Euros";
+                        break;
+                    case "Converter de Reais a Libras Esterlinas":
+                        result = valueInput / 6.43;
+                        currencyType = "£";
+                        currency = "Libras Esterlinas";
+                        break;
+                    case "Converter de Reais a Peso Argentino":
+                        result = valueInput / 0.026;
+                        currencyType = "$";
+                        currency = "Pesos Argentinos";
+                        break;
+                    case "Converter de Reais a Peso Chileno":
+                        result = valueInput / 0.0064;
+                        currencyType = "$";
+                        currency = "Pesos Chilenos";
+                        break;
+                    case "Converter de Dólar a Reais":
+                        result = valueInput * 5.28;
+                        currencyType = "R$";
+                        currency = "Reais";
+                        break;
+                    case "Converter de Euro a Reais":
+                        result = valueInput * 5.56;
+                        currencyType = "R$";
+                        currency = "Reais";
+                        break;
+                    case "Converter de Libras Esterlinas a Reais":
+                        result = valueInput * 6.43;
+                        currencyType = "R$";
+                        currency = "Reais";
+                        break;
+                    case "Converter de Peso Argentino a Reais":
+                        result = valueInput * 0.026;
+                        currencyType = "R$";
+                        currency = "Reais";
+                        break;
+                    case "Converter de Peso Chileno a Reais":
+                        result = valueInput * 0.0064;
+                        currencyType = "R$";
+                        currency = "Reais";
+                        break;
+                }
+
+                convertedValue = result;
+                convertedCurrencyType = currencyType;
+                convertedCurrency = currency;
+
             }
         });
     }
-
-
 
 }
