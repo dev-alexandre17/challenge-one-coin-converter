@@ -94,7 +94,6 @@ public class MainMenuPanel extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Object select = comboBox.getSelectedItem();
-                System.out.println("Opção Selecionada: " + select);
             }
         });
     }
