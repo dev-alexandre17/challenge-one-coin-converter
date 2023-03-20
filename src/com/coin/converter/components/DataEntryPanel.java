@@ -22,13 +22,13 @@ public class DataEntryPanel extends JFrame {
     private JLabel text;
     private JButton ok;
     private JButton cancel;
-    private JFrame frame;
     private CoinsOptionsPanel previousFrame;
+    private double valueInput;
 
     public DataEntryPanel() {
         super("Input");
 
-        text =  new JLabel("Insira um valor: ");
+        text = new JLabel("Insira um valor: ");
 
         ok = new JButton("OK");
         cancel = new JButton("Cancel");
@@ -36,7 +36,7 @@ public class DataEntryPanel extends JFrame {
         ok.setPreferredSize(new Dimension(90, 25));
         cancel.setPreferredSize(new Dimension(90, 25));
 
-        Icon icon = new ImageIcon(getClass().getResource("/assets/img/icon.png"));
+        Icon icon = new ImageIcon(getClass().getResource("/assets/img/question.png"));
         Image image = ((ImageIcon) icon).getImage();
         Image scaledImage = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         Icon scaledIcon = new ImageIcon(scaledImage);
@@ -81,28 +81,26 @@ public class DataEntryPanel extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String valueFieldText = textField.getText();
-                valueFieldText = valueFieldText.replace(",",".");
+                valueFieldText = valueFieldText.replace(",", ".");
                 double valueDecimal = Double.parseDouble(valueFieldText);
-                System.out.println("Valor digitado: " + valueDecimal);
+                valueInput = valueDecimal;
+
+                changeFrame();
             }
         });
 
         panelSettings();
 
-        changeFrame();
-
     }
 
     public void changeFrame() {
         final JFrame frame = this;
-        ok.addActionListener(e -> {
-            if (previousFrame != null) {
-                previousFrame.dispose();
-            }
-            CoinsOptionsPanel coinsOptionPanel = new CoinsOptionsPanel();
-            previousFrame = (CoinsOptionsPanel) coinsOptionPanel;
-            frame.dispose();
-        });
+        if (previousFrame != null) {
+            previousFrame.dispose();
+        }
+        CoinsOptionsPanel coinsOptionPanel = new CoinsOptionsPanel(valueInput);
+        previousFrame = (CoinsOptionsPanel) coinsOptionPanel;
+        frame.dispose();
     }
 
     public void panelSettings() {
