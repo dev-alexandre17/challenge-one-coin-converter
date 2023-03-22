@@ -17,7 +17,6 @@ public class CoinsOptionsPanel extends JFrame {
     private JComboBox<String> comboBox;
     private JButton ok;
     private JButton cancel;
-    private JFrame frame;
     private ConversionResultPanel previousFrame;
     private double valueInput;
     private double convertedValue;

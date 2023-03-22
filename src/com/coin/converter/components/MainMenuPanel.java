@@ -19,7 +19,6 @@ public class MainMenuPanel extends JFrame {
     private JComboBox<String> comboBox;
     private JButton ok;
     private JButton cancel;
-    private JFrame frame;
     private DataEntryPanel previousFrame;
 
     public MainMenuPanel() {
