@@ -1,11 +1,6 @@
-package com.coin.converter.components;
+package com.coin.converter.coins;
 
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JFormattedTextField;
+import javax.swing.*;
 import java.awt.Insets;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -22,7 +17,7 @@ public class DataEntryPanel extends JFrame {
     private JLabel text;
     private JButton ok;
     private JButton cancel;
-    private CoinsOptionsPanel previousFrame;
+    private OptionsPanel previousFrame;
     private double valueInput;
 
     public DataEntryPanel() {
@@ -81,11 +76,19 @@ public class DataEntryPanel extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String valueFieldText = textField.getText();
-                valueFieldText = valueFieldText.replace(",", ".");
-                double valueDecimal = Double.parseDouble(valueFieldText);
-                valueInput = valueDecimal;
-
-                changeFrame();
+                try {
+                    valueFieldText = valueFieldText.replace(",", ".");
+                    double valueDecimal = Double.parseDouble(valueFieldText);
+                    valueInput = valueDecimal;
+                    if (valueInput > 0.0) {
+                        changeFrame();
+                    } else {
+                        JOptionPane.showMessageDialog(DataEntryPanel.this, "Valor inválido");
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(DataEntryPanel.this,
+                            "Valor inválido. Por favor, insira somente números.");
+                }
             }
         });
 
@@ -98,8 +101,8 @@ public class DataEntryPanel extends JFrame {
         if (previousFrame != null) {
             previousFrame.dispose();
         }
-        CoinsOptionsPanel coinsOptionPanel = new CoinsOptionsPanel(valueInput);
-        previousFrame = (CoinsOptionsPanel) coinsOptionPanel;
+        OptionsPanel coinsOptionPanel = new OptionsPanel(valueInput);
+        previousFrame = (OptionsPanel) coinsOptionPanel;
         frame.dispose();
     }
 

@@ -1,4 +1,4 @@
-package com.coin.converter.components;
+package com.coin.converter.coins;
 
 import javax.swing.JLabel;
 import javax.swing.JFrame;
@@ -11,7 +11,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CoinsOptionsPanel extends JFrame {
+public class CoinsOptions extends JFrame {
 
     private JLabel text;
     private JComboBox<String> comboBox;
@@ -23,7 +23,7 @@ public class CoinsOptionsPanel extends JFrame {
     private String convertedCurrencyType;
     private String convertedCurrency;
 
-    public CoinsOptionsPanel(double valueDecimal) {
+    public CoinsOptions(double valueDecimal) {
         super("Moedas");
 
         this.valueInput = valueDecimal;
@@ -76,7 +76,7 @@ public class CoinsOptionsPanel extends JFrame {
 
     }
 
-    public CoinsOptionsPanel() {}
+    public CoinsOptions() {}
 
     public void panelSettings() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
