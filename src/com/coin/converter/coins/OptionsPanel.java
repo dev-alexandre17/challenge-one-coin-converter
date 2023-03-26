@@ -11,7 +11,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CoinsOptions extends JFrame {
+public class OptionsPanel extends JFrame {
 
     private JLabel text;
     private JComboBox<String> comboBox;
@@ -23,7 +23,7 @@ public class CoinsOptions extends JFrame {
     private String convertedCurrencyType;
     private String convertedCurrency;
 
-    public CoinsOptions(double valueDecimal) {
+    public OptionsPanel(double valueDecimal) {
         super("Moedas");
 
         this.valueInput = valueDecimal;
@@ -76,7 +76,7 @@ public class CoinsOptions extends JFrame {
 
     }
 
-    public CoinsOptions() {}
+    public OptionsPanel() {}
 
     public void panelSettings() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

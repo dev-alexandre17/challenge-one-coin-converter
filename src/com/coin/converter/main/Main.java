@@ -1,6 +1,6 @@
 package com.coin.converter.main;
 
-import com.coin.converter.components.MainMenuPanel;
+import com.coin.converter.coins.MainMenuPanel;
 
 public class Main {
 

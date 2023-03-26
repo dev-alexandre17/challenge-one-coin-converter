@@ -1,10 +1,6 @@
-package com.coin.converter.components;
+package com.coin.converter.coins;
 
-import javax.swing.JLabel;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import javax.swing.*;
 import java.awt.Image;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
@@ -21,7 +17,6 @@ public class ProceedPanel extends JFrame {
     private JFrame frame;
 
     private MainMenuPanel previousMainMenu;
-    private FinalizedProgram previousFinalized;
 
     public ProceedPanel() {
         super("Select an Option");
@@ -101,16 +96,9 @@ public class ProceedPanel extends JFrame {
     public void frameFinalizedProgram() {
         final JFrame frame = this;
         no.addActionListener(e -> {
-            if (previousFinalized != null) {
-                previousFinalized.dispose();
-            }
-            FinalizedProgram finalizedP = new FinalizedProgram();
-            previousFinalized = (FinalizedProgram) finalizedP;
             frame.dispose();
+            JOptionPane.showMessageDialog(ProceedPanel.this, "Programa Finalizado");
         });
     }
-
-
-
 
 }

@@ -1,4 +1,4 @@
-package com.coin.converter.components;
+package com.coin.converter.coins;
 
 import javax.swing.*;
 import java.awt.*;
