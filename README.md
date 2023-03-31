@@ -2,4 +2,6 @@
 
 # Orgs
 
-Sistema de conversor entre moedas para o challenge one de java. 
+Sistema de conversor entre moedas para o challenge one de java.
+
+## ✔️ Técnicas e tecnologias utilizadas
