@@ -28,3 +28,5 @@ Sistema de conversor entre moedas para o challenge one de java.
 - `JOptionPane`: facilita a exibição de uma caixa de diálogo padrão que solicita um valor aos usuários
 
 ## 🎯 Desafio
+
+Tela de detalhes do sistema
